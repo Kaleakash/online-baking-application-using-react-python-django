@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-
+import SERVICE_IP from '../IpFile';
 const userState = {
   updateState: false,
   loading: false,
@@ -12,9 +12,8 @@ const userState = {
 export const loginSignIn = createAsyncThunk(
   "login/signIn",
   async (login) => {
-    //const response = await axios.get("http://localhost:3000/login");
-    //const response = await axios.post("http://localhost:5000/api/admin/login",admin);
-    const response = await axios.post("http://127.0.0.1:8000/api/signin_account/",login);
+ 
+    const response = await axios.post(`${SERVICE_IP}/api/signin_account/`,login);
     console.log(response.data)
     return response.data;
   }

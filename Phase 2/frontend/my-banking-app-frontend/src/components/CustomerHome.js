@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { bankService, changeCustomerPassword, depositeAmount, findAllCustomer, findCustomer, transferAmount, viewDeposit, viewTransfer, viewWithdrawn, withDrawAmount } from "../slice/customerSlice";
-import { findTransaction, transactionStore } from "../slice/transactionSlice";
+
 import { useNavigate } from "react-router-dom";
 import AOS from "aos";
 import { ToastContainer, toast } from 'react-toastify';

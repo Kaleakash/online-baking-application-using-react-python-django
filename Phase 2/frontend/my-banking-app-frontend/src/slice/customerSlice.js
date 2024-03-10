@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+import SERVICE_IP from '../IpFile';
 const customerState = {
   updateState: false,
   loading: false,
@@ -15,9 +16,7 @@ const customerState = {
 export const customerSignUp = createAsyncThunk(
   "customer/signUp",
   async (customer) => {
-    console.log(customer);
-    //const response = await axios.post("http://localhost:3000/customers",customer);
-    const response = await axios.post("http://localhost:8000/api/create_account/",customer);
+    const response = await axios.post(`${SERVICE_IP}/api/create_account/`,customer);
     console.log(response);
     return response.data;
   }
@@ -27,8 +26,7 @@ export const findBankDetails = createAsyncThunk(
   "customer/bankDetails",
   async (customer) => {
     console.log(customer);
-    //const response = await axios.post("http://localhost:3000/customers",customer);
-    const response = await axios.get("http://localhost:8000/api/banks");
+    const response = await axios.get(`${SERVICE_IP}/api/banks`);
     console.log(response);
     return response.data;
   }
@@ -39,9 +37,7 @@ export const findCustomer = createAsyncThunk(
     "customer/findById",
     async (id) => {
       console.log(id)
-      //const response = await axios.get(`http://localhost:3000/customers/${id}`);
-      //const response = await axios.get(`http://localhost:5000/api/customer/findCustomer/${id}`);
-      const response = await axios.get(`http://127.0.0.1:8000/api/account/${id}`);
+      const response = await axios.get(`${SERVICE_IP}/api/account/${id}`);
       console.log(response.data);
       return response.data;
     }
@@ -50,8 +46,7 @@ export const findCustomer = createAsyncThunk(
 export const changeCustomerPassword = createAsyncThunk(
   "customer/changePassword",
   async (customer) => {
-    //const response = await axios.put(`http://localhost:3000/customers/${customer.id}`,customer);
-    const response = await axios.put(`http://localhost:5000/api/customer/changePassword/`,customer);
+    const response = await axios.put(`${SERVICE_IP}/api/customer/changePassword/`,customer);
     console.log(response.data);
     return response.data;
   }
@@ -60,9 +55,8 @@ export const changeCustomerPassword = createAsyncThunk(
 export const withDrawAmount = createAsyncThunk(
     "customer/withdraw",
     async (account) => {
-      //const response = await axios.put(`http://localhost:3000/customers/${customer.id}`,customer);
-      //const response = await axios.put(`http://localhost:5000/api/customer/withdrawAmount`,customer);
-      const response = await axios.post(`http://127.0.0.1:8000/api/withdrawals/`,account);
+     
+      const response = await axios.post(`${SERVICE_IP}/api/withdrawals/`,account);
       console.log(response.data);
       return response.data;
     }
@@ -71,9 +65,7 @@ export const withDrawAmount = createAsyncThunk(
 export const depositeAmount = createAsyncThunk(
     "customer/deposite",
     async (account) => {
-      //console.log(customer);
-      //const response = await axios.put(`http://localhost:3000/customers/${customer.id}`,customer);
-      const response = await axios.post(`http://127.0.0.1:8000/api/deposits/`,account);
+      const response = await axios.post(`${SERVICE_IP}/api/deposits/`,account);
       console.log(response.data);
       return response.data;
     }
@@ -82,9 +74,7 @@ export const depositeAmount = createAsyncThunk(
 export const findAllCustomer = createAsyncThunk(
   "customer/findAll",
   async (id) => {
-    //const response = await axios.get("http://localhost:3000/customers");
-    //const response = await axios.get("http://localhost:5000/api/customer/viewAllCustomer");
-    const response = await axios.get("http://127.0.0.1:8000/api/account/"+id);
+    const response = await axios.get(`${SERVICE_IP}/api/account/`+id);
     console.log(response.data);
     return response.data;
   }
@@ -94,9 +84,7 @@ export const findAllCustomer = createAsyncThunk(
 export const transferAmount = createAsyncThunk(
   "customer/transfer",
   async (account) => {
-    //const response = await axios.get("http://localhost:3000/customers");
-    //const response = await axios.get("http://localhost:5000/api/customer/viewAllCustomer");
-    const response = await axios.post("http://127.0.0.1:8000/api/transfer_amount/",account);
+    const response = await axios.post(`${SERVICE_IP}/api/transfer_amount/`,account);
     console.log(response.data);
     return response.data;
   }
@@ -105,9 +93,8 @@ export const transferAmount = createAsyncThunk(
 export const bankService = createAsyncThunk(
   "customer/service",
   async (service) => {
-    //const response = await axios.get("http://localhost:3000/customers");
-    //const response = await axios.get("http://localhost:5000/api/customer/viewAllCustomer");
-    const response = await axios.post("http://127.0.0.1:8000/api/customer_request/",service);
+   
+    const response = await axios.post(`${SERVICE_IP}/api/customer_request/`,service);
     console.log(response.data);
     return response.data;
   }
@@ -117,9 +104,7 @@ export const bankService = createAsyncThunk(
 export const viewDeposit = createAsyncThunk(
   "customer/viewDeposit",
   async () => {
-    //const response = await axios.get("http://localhost:3000/customers");
-    //const response = await axios.get("http://localhost:5000/api/customer/viewAllCustomer");
-    const response = await axios.get("http://127.0.0.1:8000/api/deposits");
+    const response = await axios.get(`${SERVICE_IP}/api/deposits`);
     console.log(response.data);
     return response.data;
   }
@@ -129,9 +114,8 @@ export const viewDeposit = createAsyncThunk(
 export const viewWithdrawn = createAsyncThunk(
   "customer/viewWithdrawn",
   async () => {
-    //const response = await axios.get("http://localhost:3000/customers");
-    //const response = await axios.get("http://localhost:5000/api/customer/viewAllCustomer");
-    const response = await axios.get("http://127.0.0.1:8000/api/withdrawals/");
+   
+    const response = await axios.get(`${SERVICE_IP}/api/withdrawals/`);
     console.log(response.data);
     return response.data;
   }
@@ -140,9 +124,8 @@ export const viewWithdrawn = createAsyncThunk(
 export const viewTransfer = createAsyncThunk(
   "customer/viewTransfer",
   async () => {
-    //const response = await axios.get("http://localhost:3000/customers");
-    //const response = await axios.get("http://localhost:5000/api/customer/viewAllCustomer");
-    const response = await axios.get("http://127.0.0.1:8000/api/transfer_amount/");
+   
+    const response = await axios.get(`${SERVICE_IP}/api/transfer_amount/`);
     console.log(response.data);
     return response.data;
   }
