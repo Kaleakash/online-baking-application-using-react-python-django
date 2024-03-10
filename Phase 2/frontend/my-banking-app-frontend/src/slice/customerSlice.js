@@ -9,7 +9,8 @@ const customerState = {
   response: "",
   depositeInfo:[],
   withdrawnInfo:[],
-  transferInfo:[]
+  transferInfo:[],
+  bankList:[]
 };
 export const customerSignUp = createAsyncThunk(
   "customer/signUp",
@@ -21,6 +22,18 @@ export const customerSignUp = createAsyncThunk(
     return response.data;
   }
 );
+
+export const findBankDetails = createAsyncThunk(
+  "customer/bankDetails",
+  async (customer) => {
+    console.log(customer);
+    //const response = await axios.post("http://localhost:3000/customers",customer);
+    const response = await axios.get("http://localhost:8000/api/banks");
+    console.log(response);
+    return response.data;
+  }
+);
+
 
 export const findCustomer = createAsyncThunk(
     "customer/findById",
@@ -204,6 +217,17 @@ const customerSlice = createSlice({
         state.error = action.error.message;
       });
 
+
+      builder
+      .addCase(findBankDetails.fulfilled, (state, action) => {
+        console.log("in builder")
+        state.bankList = action.payload;
+        state.loading=true;
+        console.log(state.customerList)
+      })
+      .addCase(findBankDetails.rejected, (state, action) => {
+        state.error = action.error.message;
+      });
 
       builder
       .addCase(viewDeposit.fulfilled, (state, action) => {

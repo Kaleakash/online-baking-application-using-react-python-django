@@ -4,7 +4,7 @@ import axios from "axios";
 const userState = {
   updateState: false,
   loading: false,
-  userList: [],
+  user: {},
   error: "",
   response: "",
 };
@@ -40,7 +40,7 @@ const userSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(loginSignIn.fulfilled, (state, action) => {
-        state.userList = action.payload;
+        state.user = action.payload;
       })
       .addCase(loginSignIn.rejected, (state, action) => {
         state.error = action.error.message;

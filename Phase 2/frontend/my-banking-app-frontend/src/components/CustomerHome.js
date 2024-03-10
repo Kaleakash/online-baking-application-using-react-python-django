@@ -32,14 +32,8 @@ useEffect(()=> {
 let obj = JSON.parse(localStorage.getItem("user"));
 console.log(obj);
 if(obj!=null){
-        //let emailid = obj;
         const initializationDetails = async ()=> {
             let customerInfo  = await dispatch(findCustomer(obj.id)); 
-            //let customerInfo1 = JSON.parse(JSON.stringify(customerInfo)) 
-            //console.log(customerInfo.payload);
-            //console.log(customerInfo.payload.balance);
-            //console.log(customerInfo.payload.account_type);
-            //console.log(customerInfo.payload.client.name);
             await setCustomer(customerInfo.payload)
             console.log(customerInfo.payload.id)
             let withdrawanDbInfo = await dispatch(viewWithdrawn());
@@ -59,18 +53,6 @@ if(obj!=null){
             setDepositHistory(filterdepositData)
             setTransferHistory(filtertransferData);
 
-            //console.log(customerInfo1.bank)
-            // let customerResult = customerInfo.payload.find(c=>c.emailid==emailid);
-
-            // let transactionInfo = await dispatch(findTransaction());
-            // let transactionDetails  = transactionInfo.payload.filter(e=>e.accno==customerResult.accno);
-            // console.log("all Transaction details");
-            // //console.log(transactionDetails);
-            // setCustomerTransaction(transactionDetails);
-            //setCustomer(customer=> {return {...customer,customer:customerInfo.payload}});
-            // setAccount(account=> {
-            //     return {...account,"accno":customerResult.accno}
-            // });
         }
         initializationDetails();
     }
@@ -145,38 +127,7 @@ const deposite = async (event)=> {
     })
 
 
-    //console.log(customer);
 
-  //   console.log(account);
-  //   console.log(customer)
-  //   let custTemp = {...customer};
-  //   console.log("before deposite")
-  //   console.log(custTemp);
-  //   custTemp.amount=custTemp.amount+account.amount;
-  //   console.log("after deposite")
-  //   console.log(custTemp)
-  //  // console.log(customer);
-  //  let depositeResult = await dispatch(depositeAmount(custTemp));
-  //  console.log(depositeResult);
-  //  setCustomer(depositeResult.payload);
-
-  //  setAccount(account=> {
-  //   return {...account,"amount":0}
-  // })
-  // let transactionObj = {};
-  // transactionObj.cid = customer.cid;
-  // transactionObj.cname = customer.cname;
-  // transactionObj.emailid = customer.emailid;
-  // transactionObj.accno= customer.accno;
-  // transactionObj.amount = account.amount;
-  // transactionObj.typeoftransaction="Deposit";
-  // transactionObj.dot=new Date().toISOString().slice(0, 19);
-  // transactionObj.transferTo=0;
-  // console.log("Transaction details");
-  // console.log(transactionObj);
-  // let transactionResult = await dispatch(transactionStore(transactionObj));
-  // console.log(transactionResult);
-  // alert("Amount deposite successfully")
 }
 
 let displayService = (event)=> {
