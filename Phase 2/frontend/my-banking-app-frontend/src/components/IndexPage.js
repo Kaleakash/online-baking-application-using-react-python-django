@@ -10,7 +10,7 @@ import {loginSignIn} from '../slice/userSlice';
 //import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css'
 
-import ErrorModal from './ErrorModal';
+
 import { ToastContainer, toast } from 'react-toastify';
 import axios from 'axios';
 function IndexPage() {
@@ -182,7 +182,7 @@ const signUp= async (event)=> {
         <a routerLink="index" className="h2 mb-0" style={{"textDecoration": "none"}}>
             Banker Online App<span className="text-primary"></span> </a></h1>
     </div>
-    { error && <ErrorModal title={error.title} message={error.message} onClose={errorHandler} /> }  
+
     <div className="col-12 col-md-10 d-none d-xl-block">
       <nav className="site-navigation position-relative text-right" role="navigation">
 
