@@ -85,7 +85,7 @@ WSGI_APPLICATION = 'banksystem.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'djongo',
-        'NAME': 'bankdb',
+        'NAME': 'bankdbapi2',
         'HOST': '127.0.0.1',
         'PORT': 27017,
         }

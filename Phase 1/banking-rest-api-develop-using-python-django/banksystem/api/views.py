@@ -60,7 +60,7 @@ class CreateAccountAPIView(APIView):
         bank = Bank.objects.get(pk=request.data['bank'])
         account = Account.objects.create(
             client = client,
-            open_date = request.data['open_date'],
+
             account_type = request.data['account_type'],
             bank = bank
         )

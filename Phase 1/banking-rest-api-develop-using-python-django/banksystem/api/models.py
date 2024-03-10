@@ -93,7 +93,6 @@ class Client(models.Model):
 class Account(models.Model):
     """Represents Bank Account"""
     client = models.ForeignKey(Client,on_delete=models.CASCADE)
-    open_date = models.CharField(max_length=250)
     account_type = models.CharField(max_length=250)
     amount = models.IntegerField(default=1000)
     bank = models.ForeignKey(Bank,on_delete=models.CASCADE)
