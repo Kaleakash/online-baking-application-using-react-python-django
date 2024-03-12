@@ -8,7 +8,7 @@ services:
     command : npm start
     container_name: front
     build: ./frontend/my-banking-app-frontend/
-    image: reactjs-app:1.0 
+    image: akashkale/reactjs-app:k1 
     ports:
       - "3000:3000"
   mongodb:
@@ -21,12 +21,13 @@ services:
       - 27017:27017
   backend:
     build:  ./backend/banking-rest-api-develop-using-python-django/banksystem/
-    image: python-app:1.0
+    image: akashkale/python-app:k1
     restart: always
     #command: python manage.py runserver 0.0.0.0:8000\
     command: bash -c "
         python manage.py makemigrations &&
-        python manage.py migrate 
+        python manage.py migrate &&
+        DJANGO_SUPERUSER_PASSWORD=admin python manage.py createsuperuser --username=admin --email=admin@example.com --noinput 
         && python manage.py runserver 0.0.0.0:8000
         "
     volumes:
