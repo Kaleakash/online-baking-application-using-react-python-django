@@ -599,7 +599,7 @@ data-aos="fade" id="home-section">
               <select name='bank'  onChange={(event)=> {
                 setUser(user=> {return {...user,"bank":event.target.value}})
               }} className="form-control">
-
+              <option>--Select Bank--</option>
               {banks.map(e=><option value={e.id}>{e.name}</option>)}
           
               </select>

@@ -52,6 +52,7 @@ class CreateAccountAPIView(APIView):
 
         }
         """
+        print(request.data)
         client = Client.objects.create(
             name = request.data['full_name'],
             address = request.data['address'],
